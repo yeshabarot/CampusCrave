@@ -10,7 +10,7 @@ Future<void> main() async {
   );
   runApp(const MyApp());
 }
-//hello this is demo 
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
