@@ -4,6 +4,7 @@ import 'package:campuscrave/widgets/widget_support.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
 
@@ -35,7 +36,6 @@ class _SignUpState extends State<SignUp> {
               style: TextStyle(fontSize: 20.0),
             ))));
 
-        // ignore: use_build_context_synchronously
         Navigator.pushReplacement(
             context, MaterialPageRoute(builder: (context) => BottomNav()));
       } on FirebaseException catch (e) {
@@ -136,8 +136,7 @@ class _SignUpState extends State<SignUp> {
                               decoration: InputDecoration(
                                   hintText: 'Name',
                                   hintStyle: AppWidget.semiBoldTextFieldStyle(),
-                                  prefixIcon:
-                                      const Icon(Icons.person_outlined)),
+                                  prefixIcon: const Icon(Icons.person_outlined)),
                             ),
                             const SizedBox(
                               height: 30.0,
@@ -170,8 +169,7 @@ class _SignUpState extends State<SignUp> {
                               decoration: InputDecoration(
                                   hintText: 'Password',
                                   hintStyle: AppWidget.semiBoldTextFieldStyle(),
-                                  prefixIcon:
-                                      const Icon(Icons.password_outlined)),
+                                  prefixIcon: const Icon(Icons.password_outlined)),
                             ),
                             const SizedBox(
                               height: 80.0,
@@ -191,8 +189,7 @@ class _SignUpState extends State<SignUp> {
                                 elevation: 5.0,
                                 borderRadius: BorderRadius.circular(20),
                                 child: Container(
-                                  padding:
-                                      const EdgeInsets.symmetric(vertical: 8.0),
+                                  padding: const EdgeInsets.symmetric(vertical: 8.0),
                                   width: 200,
                                   decoration: BoxDecoration(
                                       color: const Color(0Xffff5722),
@@ -220,7 +217,7 @@ class _SignUpState extends State<SignUp> {
                   GestureDetector(
                       onTap: () {
                         Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => LogIn()));
+                            MaterialPageRoute(builder: (context) => const LogIn()));
                       },
                       child: Text(
                         "Already have an account? Login",

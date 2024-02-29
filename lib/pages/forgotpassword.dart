@@ -1,7 +1,7 @@
-
-import 'package:campuscrave/pages/login.dart';
 import 'package:campuscrave/pages/signup.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
 
 class ForgotPassword extends StatefulWidget {
   const ForgotPassword({super.key});
@@ -11,6 +11,31 @@ class ForgotPassword extends StatefulWidget {
 }
 
 class _ForgotPasswordState extends State<ForgotPassword> {
+  TextEditingController mailcontroller = new TextEditingController();
+
+  String email = "";
+
+  final _formkey = GlobalKey<FormState>();
+
+  resetPassword() async {
+    try {
+      await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text(
+        "Password Reset Email has been sent !",
+        style: TextStyle(fontSize: 18.0),
+      )));
+    } on FirebaseAuthException catch (e) {
+      if (e.code == "user-not-found") {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+            content: Text(
+          "No user found for that email.",
+          style: TextStyle(fontSize: 18.0),
+        )));
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,6 +68,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
             ),
             Expanded(
                 child: Form(
+                  key: _formkey,
                     child: Padding(
               padding: const EdgeInsets.only(left: 10.0),
               child: ListView(
@@ -54,6 +80,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                       borderRadius: BorderRadius.circular(30),
                     ),
                     child: TextFormField(
+                      controller: mailcontroller,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Please Enter Email';
@@ -77,11 +104,13 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                     height: 40.0,
                   ),
                   GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const SignUp()));
+                    onTap: (){
+                    if(_formkey.currentState!.validate()){
+                      setState(() {
+                        email= mailcontroller.text;
+                      });
+                      resetPassword();
+                    }
                     },
                     child: Container(
                       width: 140,
@@ -118,12 +147,12 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const LogIn()));
+                                  builder: (context) => SignUp()));
                         },
                         child: const Text(
                           "Create",
                           style: TextStyle(
-                              color: Colors.orange,
+                              color: Color.fromARGB(225, 184, 166, 6),
                               fontSize: 20.0,
                               fontWeight: FontWeight.w500),
                         ),
