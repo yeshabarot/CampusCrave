@@ -1,5 +1,6 @@
 
 import 'package:campuscrave/admin/admin_login.dart';
+import 'package:campuscrave/admin/home_admin.dart';
 import 'package:campuscrave/firebase_options.dart';
 import 'package:campuscrave/pages/onboard.dart';
 
@@ -20,6 +21,6 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(home: Onboard());
+    return const MaterialApp(home: HomeAdmin());
   }
 }
