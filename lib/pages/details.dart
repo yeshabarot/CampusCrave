@@ -13,6 +13,8 @@ class Details extends StatefulWidget {
 
 class _DetailsState extends State<Details> {
   int a = 1, total = 0;
+
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
