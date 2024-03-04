@@ -1,11 +1,6 @@
 
-import 'package:campuscrave/admin/admin_login.dart';
-import 'package:campuscrave/admin/home_admin.dart';
 import 'package:campuscrave/firebase_options.dart';
-import 'package:campuscrave/pages/home.dart';
-import 'package:campuscrave/pages/onboard.dart';
 import 'package:campuscrave/pages/profile.dart';
-
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
