@@ -14,7 +14,10 @@ class LoginScreen extends StatelessWidget {
           //column
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
             //Section 1
-            const Image(image: AssetImage("images/y_google.png"), width: 300, height: 270),
+            const Image(
+                image: AssetImage("images/y_login.png"),
+                width: 300,
+                height: 270),
             const Align(
               alignment: Alignment.centerLeft,
               child: Text(
@@ -24,7 +27,8 @@ class LoginScreen extends StatelessWidget {
             ),
             const Align(
                 alignment: Alignment.centerLeft,
-                child: Text("No more Q's, Only W's", style: TextStyle(fontSize: 20))),
+                child: Text("No more Q's, Only W's",
+                    style: TextStyle(fontSize: 20))),
             const SizedBox(
               height: 30,
             ),
@@ -36,7 +40,9 @@ class LoginScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 const Text("OR"),
-                const SizedBox(height: 10,),
+                const SizedBox(
+                  height: 10,
+                ),
                 SizedBox(
                   height: 50,
                   width: double.infinity,
@@ -47,7 +53,10 @@ class LoginScreen extends StatelessWidget {
                       height: 30,
                     ),
                     onPressed: () {},
-                    label: const Text("Sign-in With Google", style: TextStyle(fontSize: 15),),
+                    label: const Text(
+                      "Sign-in With Google",
+                      style: TextStyle(fontSize: 15),
+                    ),
                   ),
                 ),
                 const Align(
@@ -87,6 +96,7 @@ class LoginScreen extends StatelessWidget {
               height: 25,
             ),
             TextFormField(
+              obscureText: true,
               decoration: const InputDecoration(
                 prefixIcon: Icon(Icons.fingerprint),
                 labelText: "Password",

@@ -48,12 +48,9 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-assets:
-      - yaksh/assets/images/LoginDraw.png
-      - yaksh/assets/images/Google.png
-      - yaksh/assets/images/image.png
-      - yaksh/assets/images/loginAni.gif
-      - yaksh/assets/images/loginIMG.png
+  assets:
+    - images/
+
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -68,7 +65,7 @@ assets:
   # list giving the asset and other descriptors for the font. For
   # example:
   # fonts:
-  fonts:
+fonts:
     - family: Poppins
       fonts:
         - asset: fonts/Poppins-SemiBold.ttf
