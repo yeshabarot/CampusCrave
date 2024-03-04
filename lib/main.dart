@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> f3ba254e46bd3cb6325e7a572b818cabd50e74da
 import 'package:campuscrave/firebase_options.dart';
 import 'package:campuscrave/pages/profile.dart';
 import 'package:firebase_core/firebase_core.dart';
