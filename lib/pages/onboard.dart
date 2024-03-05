@@ -1,5 +1,4 @@
-
-import 'package:campuscrave/pages/signup.dart';
+import 'package:campuscrave/screens/login_screen.dart';
 import 'package:campuscrave/widgets/content_model.dart';
 import 'package:campuscrave/widgets/widget_support.dart';
 import 'package:flutter/material.dart';
@@ -86,7 +85,7 @@ class _OnboardState extends State<Onboard> {
             onTap: () {
               if (currentIndex == contents.length - 1) {
                 Navigator.pushReplacement(
-                    context, MaterialPageRoute(builder: (context) => SignUp()));
+                    context, MaterialPageRoute(builder: (context) => LoginScreen()));
               }
               _controller.nextPage(
                   duration: const Duration(milliseconds: 200),

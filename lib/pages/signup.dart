@@ -1,5 +1,5 @@
 import 'package:campuscrave/pages/bottomnav.dart';
-import 'package:campuscrave/pages/login.dart';
+import 'package:campuscrave/screens/login_screen.dart';
 import 'package:campuscrave/widgets/widget_support.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -217,7 +217,7 @@ class _SignUpState extends State<SignUp> {
                   GestureDetector(
                       onTap: () {
                         Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => const LogIn()));
+                            MaterialPageRoute(builder: (context) => const LoginScreen()));
                       },
                       child: Text(
                         "Already have an account? Login",

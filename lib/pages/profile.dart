@@ -1,3 +1,4 @@
+import 'package:campuscrave/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 
 class Profile extends StatefulWidget {
@@ -64,149 +65,153 @@ class _ProfileState extends State<Profile> {
             ),
           ],
         ),
-
-        const SizedBox(height: 20.0,),
+        const SizedBox(
+          height: 20.0,
+        ),
         Container(
           margin: const EdgeInsets.symmetric(horizontal: 20.0),
           child: Material(
             borderRadius: BorderRadius.circular(10),
             elevation: 2.0,
             child: Container(
-                padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10)),
-                child: const Row(
-                  children: [
-                    Icon(
-                      Icons.person,
-                      color: Colors.black,
-                    ),
-                    SizedBox(
-                      width: 20.0,
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Name",
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.w600),
-                        ),
-                        Text(
-                          "Shivam Gupta",
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.w600),
-                        )
-                      ],
-                    )
-                  ],
-                ),
-                ),
-                
+              padding:
+                  const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
+              decoration: BoxDecoration(
+                  color: Colors.white, borderRadius: BorderRadius.circular(10)),
+              child: const Row(
+                children: [
+                  Icon(
+                    Icons.person,
+                    color: Colors.black,
+                  ),
+                  SizedBox(
+                    width: 20.0,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Name",
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.w600),
+                      ),
+                      Text(
+                        "Shivam Gupta",
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.w600),
+                      )
+                    ],
+                  )
+                ],
+              ),
+            ),
           ),
         ),
-
-
-        const SizedBox(height: 20.0,),
+        const SizedBox(
+          height: 20.0,
+        ),
         Container(
           margin: const EdgeInsets.symmetric(horizontal: 20.0),
           child: Material(
             borderRadius: BorderRadius.circular(10),
             elevation: 2.0,
             child: Container(
-                padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10)),
-                child: const Row(
-                  children: [
-                    Icon(
-                      Icons.email,
-                      color: Colors.black,
-                    ),
-                    SizedBox(
-                      width: 20.0,
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Email",
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.w600),
-                        ),
-                        Text(
-                          "Shivam456@gmail.com",
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.w600),
-                        )
-                      ],
-                    )
-                  ],
-                ),
-                ),
-                
+              padding:
+                  const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
+              decoration: BoxDecoration(
+                  color: Colors.white, borderRadius: BorderRadius.circular(10)),
+              child: const Row(
+                children: [
+                  Icon(
+                    Icons.email,
+                    color: Colors.black,
+                  ),
+                  SizedBox(
+                    width: 20.0,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Email",
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.w600),
+                      ),
+                      Text(
+                        "Shivam456@gmail.com",
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.w600),
+                      )
+                    ],
+                  )
+                ],
+              ),
+            ),
           ),
         ),
-
-
-        const SizedBox(height: 20.0,),
+        const SizedBox(
+          height: 20.0,
+        ),
         Container(
           margin: const EdgeInsets.symmetric(horizontal: 20.0),
           child: Material(
             borderRadius: BorderRadius.circular(10),
             elevation: 2.0,
             child: Container(
-                padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10)),
-                child: const Row(
-                  children: [
-                    Icon(
-                      Icons.description,
-                      color: Colors.black,
-                    ),
-                    SizedBox(
-                      width: 20.0,
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Terms & Conditons",
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.w600),
-                        )
-                      ],
-                    )
-                  ],
-                ),
-                ),
-                
+              padding:
+                  const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
+              decoration: BoxDecoration(
+                  color: Colors.white, borderRadius: BorderRadius.circular(10)),
+              child: const Row(
+                children: [
+                  Icon(
+                    Icons.description,
+                    color: Colors.black,
+                  ),
+                  SizedBox(
+                    width: 20.0,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Terms & Conditons",
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.w600),
+                      )
+                    ],
+                  )
+                ],
+              ),
+            ),
           ),
         ),
-
-
-        const SizedBox(height: 20.0,),
-        Container(
-          margin: const EdgeInsets.symmetric(horizontal: 20.0),
-          child: Material(
-            borderRadius: BorderRadius.circular(10),
-            elevation: 2.0,
-            child: Container(
-                padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 10.0),
+        const SizedBox(
+          height: 20.0,
+        ),
+        GestureDetector(
+          onTap: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const LoginScreen()));
+          },
+          child: Container(
+            margin: const EdgeInsets.symmetric(horizontal: 20.0),
+            child: Material(
+              borderRadius: BorderRadius.circular(10),
+              elevation: 2.0,
+              child: Container(
+                padding: const EdgeInsets.symmetric(
+                    vertical: 15.0, horizontal: 10.0),
                 decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(10)),
@@ -233,13 +238,10 @@ class _ProfileState extends State<Profile> {
                     )
                   ],
                 ),
-                ),
-                
+              ),
+            ),
           ),
         ),
-
-
-
       ],
     )));
   }
