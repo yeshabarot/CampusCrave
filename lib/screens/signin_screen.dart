@@ -1,7 +1,10 @@
 import 'package:campuscrave/pages/bottomnav.dart';
 import 'package:campuscrave/screens/login_screen.dart';
+import 'package:campuscrave/services/database.dart';
+import 'package:campuscrave/services/shared_pref.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:random_string/random_string.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -33,7 +36,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
               "Registered Successfully",
               style: TextStyle(fontSize: 20.0),
             ))));
-
+            
+        String Id = randomAlphaNumeric(10);
+        Map<String, dynamic> addUserInfo = {
+          "Name": namecontroller.text,
+          "Email": mailcontroller.text,
+          "Id": Id,
+        };
+        await DatabaseMethods().addUserDetail(addUserInfo, Id);
+        await SharedPreferenceHelper().saveUserName(namecontroller.text);
+        await SharedPreferenceHelper().saveUserEmail(mailcontroller.text);
+        await SharedPreferenceHelper().saveUserId(Id);
         Navigator.pushReplacement(
             context, MaterialPageRoute(builder: (context) => BottomNav()));
       } on FirebaseException catch (e) {

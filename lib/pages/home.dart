@@ -45,7 +45,12 @@ class _HomeState extends State<Home> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const Details()));
+                                builder: (context) => Details(
+                                      detail: ds["Detail"],
+                                      image: ds["Image"],
+                                      name: ds["Name"],
+                                      price: ds["Price"],
+                                    )));
                       },
                       child: Container(
                         margin: const EdgeInsets.only(right: 20.0, bottom: 20),
@@ -135,7 +140,12 @@ class _HomeState extends State<Home> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const Details()));
+                                builder: (context) => Details(
+                                      detail: ds["Detail"],
+                                      image: ds["Image"],
+                                      name: ds["Name"],
+                                      price: ds["Price"],
+                                    )));
                       },
                       child: Container(
                         margin: const EdgeInsets.all(4),
