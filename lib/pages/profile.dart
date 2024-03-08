@@ -14,56 +14,7 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
-  String? profile, name, email;
-  final ImagePicker _picker = ImagePicker();
-  File? selectedImage;
-
-  Future getImage() async {
-    var image = await _picker.pickImage(source: ImageSource.gallery);
-
-    selectedImage = File(image!.path);
-    setState(() {
-      uploadItem();
-    });
-  }
-
-  uploadItem() async {
-    if (selectedImage != null) {
-      String addId = randomAlphaNumeric(10);
-
-      Reference firebaseStorageRef =
-          FirebaseStorage.instance.ref().child("Images").child(addId);
-      final UploadTask task = firebaseStorageRef.putFile(selectedImage!);
-
-      var downloadUrl = await (await task).ref.getDownloadURL();
-      await SharedPreferenceHelper().saveUserProfile(downloadUrl);
-      setState(() {
-        
-      });
-    }
-  }
-
-  getthesharedpref() async {
-    profile = await SharedPreferenceHelper().getUserProfile();
-    name = await SharedPreferenceHelper().getUserName();
-    email = await SharedPreferenceHelper().getUserEmail();
-    print(name);
-    print(email);
-    print(profile);
-    setState(() {});
-  }
-
-  onthisload() async {
-    await getthesharedpref();
-    setState(() {});
-  }
-
-  @override
-  void initState() {
-    onthisload();
-    super.initState();
-  }
-
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(

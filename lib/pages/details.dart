@@ -1,15 +1,11 @@
-import 'package:campuscrave/services/database.dart';
-import 'package:campuscrave/services/shared_pref.dart';
+
 import 'package:campuscrave/widgets/widget_support.dart';
 import 'package:flutter/material.dart';
 
+
+
 class Details extends StatefulWidget {
-  String image, name, detail, price;
-  Details(
-      {required this.detail,
-      required this.image,
-      required this.name,
-      required this.price});
+  const Details({super.key});
 
   @override
   State<Details> createState() => _DetailsState();
@@ -21,7 +17,6 @@ class _DetailsState extends State<Details> {
 
   getthesharedpref() async {
     id = await SharedPreferenceHelper().getUserId();
-
     setState(() {});
   }
 
@@ -41,26 +36,24 @@ class _DetailsState extends State<Details> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        margin: const EdgeInsets.only(top: 50.0, left: 20.0, right: 20.0),
+        margin: const EdgeInsets.only(top: 50, left: 20, right: 20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             GestureDetector(
-                onTap: () {
-                  Navigator.pop(context);
-                },
-                child: const Icon(
-                  Icons.arrow_back_ios_new_outlined,
-                  color: Colors.black,
-                )),
-            Image.network(
-              widget.image,
+              onTap: () {
+                Navigator.pop(context);
+              },
+              child: const Icon(
+                Icons.arrow_back_ios_new_outlined,
+                color: Colors.black,
+              ),
+            ),
+            Image.asset(
+              "images/salad2.png",
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height / 2.5,
               fit: BoxFit.fill,
-            ),
-            const SizedBox(
-              height: 15.0,
             ),
             Row(
               children: [
@@ -68,8 +61,12 @@ class _DetailsState extends State<Details> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      widget.name,
+                      "Mediterraneon",
                       style: AppWidget.semiBoldTextFieldStyle(),
+                    ),
+                    Text(
+                      "Chickpea Salad",
+                      style: AppWidget.boldTextFieldStyle(),
                     ),
                   ],
                 ),
@@ -78,34 +75,29 @@ class _DetailsState extends State<Details> {
                   onTap: () {
                     if (a > 1) {
                       --a;
-                      total = total - int.parse(widget.price);
                     }
                     setState(() {});
                   },
                   child: Container(
                     decoration: BoxDecoration(
                         color: Colors.black,
-                        borderRadius: BorderRadius.circular(8)),
+                        borderRadius: BorderRadius.circular(10)),
                     child: const Icon(
                       Icons.remove,
                       color: Colors.white,
                     ),
                   ),
                 ),
-                const SizedBox(
-                  width: 20.0,
-                ),
+                const SizedBox(width: 10),
                 Text(
                   a.toString(),
                   style: AppWidget.semiBoldTextFieldStyle(),
                 ),
-                const SizedBox(
-                  width: 20.0,
-                ),
+                const SizedBox(width: 10),
                 GestureDetector(
                   onTap: () {
                     ++a;
-                    total = total + int.parse(widget.price);
+
                     setState(() {});
                   },
                   child: Container(
@@ -120,42 +112,30 @@ class _DetailsState extends State<Details> {
                 )
               ],
             ),
-            const SizedBox(
-              height: 20.0,
-            ),
+            const SizedBox(height: 20),
             Text(
-              widget.detail,
-              maxLines: 4,
+              "Enjoy a vibrant medley of flavors with our exquisite salad. Crisp, garden-fresh greens mingle harmoniously with juicy cherry tomatoes, cucumber ribbons, and delicate red onion slices. Drizzled with a zesty balsamic vinaigrette.",
               style: AppWidget.LightTextFieldStyle(),
             ),
-            const SizedBox(
-              height: 30.0,
-            ),
+            const SizedBox(height: 20),
             Row(
               children: [
                 Text(
                   "Delivery Time",
                   style: AppWidget.semiBoldTextFieldStyle(),
                 ),
-                const SizedBox(
-                  width: 25.0,
-                ),
+                const SizedBox(width: 25),
                 const Icon(
                   Icons.alarm,
                   color: Colors.black54,
                 ),
-                const SizedBox(
-                  width: 5.0,
-                ),
-                Text(
-                  "30 min",
-                  style: AppWidget.semiBoldTextFieldStyle(),
-                )
+                const SizedBox(width: 5),
+                Text("30 min", style: AppWidget.semiBoldTextFieldStyle()),
               ],
             ),
             const Spacer(),
             Padding(
-              padding: const EdgeInsets.only(bottom: 40.0),
+              padding: const EdgeInsets.only(bottom: 40),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -167,7 +147,7 @@ class _DetailsState extends State<Details> {
                         style: AppWidget.semiBoldTextFieldStyle(),
                       ),
                       Text(
-                        "\₹" + total.toString(),
+                        "\$30",
                         style: AppWidget.HeadTextFieldStyle(),
                       )
                     ],
@@ -180,7 +160,6 @@ class _DetailsState extends State<Details> {
                         "Total": total.toString(),
                         "Image": widget.image
                       };
-
                       await DatabaseMethods().addFoodToCart(addFoodtoCart, id!);
                       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                           backgroundColor: Colors.orangeAccent,
