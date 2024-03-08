@@ -21,6 +21,7 @@ class _DetailsState extends State<Details> {
 
   getthesharedpref() async {
     id = await SharedPreferenceHelper().getUserId();
+
     setState(() {});
   }
 
@@ -179,6 +180,7 @@ class _DetailsState extends State<Details> {
                         "Total": total.toString(),
                         "Image": widget.image
                       };
+
                       await DatabaseMethods().addFoodToCart(addFoodtoCart, id!);
                       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                           backgroundColor: Colors.orangeAccent,
