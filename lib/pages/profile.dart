@@ -64,7 +64,7 @@ class _ProfileState extends State<Profile> {
     return Scaffold(
       body: Center(
         child: name == null
-            ? const CircularProgressIndicator()
+            ? Center(child: const CircularProgressIndicator())
             : Container(
                 child: Column(
                   children: [

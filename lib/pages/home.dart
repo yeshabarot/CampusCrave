@@ -188,7 +188,7 @@ class _HomeState extends State<Home> {
                     );
                   },
                 )
-              : const CircularProgressIndicator();
+              : Center(child: const CircularProgressIndicator());
         });
   }
 

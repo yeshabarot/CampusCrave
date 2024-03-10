@@ -108,7 +108,7 @@ class _OrderState extends State<Order> {
                       ),
                     );
                   })
-              : const CircularProgressIndicator();
+              : Center(child: const CircularProgressIndicator());
         });
   }
 

@@ -2,6 +2,7 @@ import 'package:campuscrave/services/database.dart';
 import 'package:campuscrave/services/shared_pref.dart';
 import 'package:campuscrave/widgets/widget_support.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 
 class Details extends StatefulWidget {
@@ -53,11 +54,14 @@ class _DetailsState extends State<Details> {
                   Icons.arrow_back_ios_new_outlined,
                   color: Colors.black,
                 )),
-            Image.network(
-              widget.image,
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height / 2.5,
-              fit: BoxFit.fill,
+            ClipRRect(
+              borderRadius: BorderRadius.circular(200),
+              child: Image.network(
+                widget.image,
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height / 2.5,
+                fit: BoxFit.fill,
+              ),
             ),
             const SizedBox(
               height: 15.0,

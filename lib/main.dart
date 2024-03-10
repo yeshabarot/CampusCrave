@@ -1,6 +1,4 @@
 import 'package:campuscrave/firebase_options.dart';
-import 'package:campuscrave/pages/bottomnav.dart';
-import 'package:campuscrave/pages/home.dart';
 import 'package:campuscrave/screens/welcome.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
