@@ -2,7 +2,6 @@ import 'package:campuscrave/admin/home_admin.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-
 class AdminLogin extends StatefulWidget {
   const AdminLogin({super.key});
 
@@ -55,7 +54,7 @@ class _AdminLoginState extends State<AdminLogin> {
                         height: 30.0,
                       ),
                       Material(
-                        elevation: 3.0,
+                        elevation: 8.0,
                         borderRadius: BorderRadius.circular(20),
                         child: Container(
                           height: MediaQuery.of(context).size.height / 2.2,
@@ -85,7 +84,6 @@ class _AdminLoginState extends State<AdminLogin> {
                                       if (value == null || value.isEmpty) {
                                         return 'Please Enter Username';
                                       }
-                                  
                                     },
                                     decoration: const InputDecoration(
                                         border: InputBorder.none,
@@ -116,7 +114,6 @@ class _AdminLoginState extends State<AdminLogin> {
                                       if (value == null || value.isEmpty) {
                                         return 'Please Enter Password';
                                       }
-                                     
                                     },
                                     decoration: const InputDecoration(
                                         border: InputBorder.none,
@@ -186,7 +183,8 @@ class _AdminLoginState extends State<AdminLogin> {
                 style: TextStyle(fontSize: 18.0),
               )));
         } else {
-          Route route = MaterialPageRoute(builder: (context) => const HomeAdmin());
+          Route route =
+              MaterialPageRoute(builder: (context) => const HomeAdmin());
           Navigator.pushReplacement(context, route);
         }
       });
