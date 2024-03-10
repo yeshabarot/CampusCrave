@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'package:campuscrave/screens/login_screen.dart';
 import 'package:campuscrave/services/auth.dart';
 import 'package:campuscrave/services/shared_pref.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -331,11 +330,8 @@ class _ProfileState extends State<Profile> {
                     ),
                     GestureDetector(
                     onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const LoginScreen()));
-                    },
+                        AuthMethods().SignOut();
+                      },
                       child: Container(
                         margin: const EdgeInsets.symmetric(horizontal: 20.0),
                         child: Material(
