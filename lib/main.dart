@@ -1,5 +1,3 @@
-import 'package:campuscrave/admin/add_food.dart';
-import 'package:campuscrave/admin/home_admin.dart';
 import 'package:campuscrave/firebase_options.dart';
 import 'package:campuscrave/screens/welcome.dart';
 import 'package:firebase_core/firebase_core.dart';
