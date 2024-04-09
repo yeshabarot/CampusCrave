@@ -1,10 +1,10 @@
 import 'package:campuscrave/pages/bottomnav.dart';
 import 'package:campuscrave/pages/forgotpassword.dart';
 import 'package:campuscrave/pages/signup.dart';
+import 'package:campuscrave/services/shared_pref.dart';
 import 'package:campuscrave/widgets/widget_support.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
 
 class LogIn extends StatefulWidget {
   const LogIn({super.key});
@@ -16,7 +16,7 @@ class LogIn extends StatefulWidget {
 class _LogInState extends State<LogIn> {
   String email = "", password = "";
 
-  final _formkey= GlobalKey<FormState>();
+  final _formkey = GlobalKey<FormState>();
 
   TextEditingController useremailcontroller = new TextEditingController();
   TextEditingController userpasswordcontroller = new TextEditingController();
@@ -25,7 +25,11 @@ class _LogInState extends State<LogIn> {
     try {
       await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
-          Navigator.push(context, MaterialPageRoute(builder: (context)=> const BottomNav()));
+          
+      SharedPreferenceHelper.setLoggedIn(true);
+      
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => const BottomNav()));
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
@@ -33,8 +37,8 @@ class _LogInState extends State<LogIn> {
           "No User Found for that Email",
           style: TextStyle(fontSize: 18.0, color: Colors.black),
         )));
-      }else if(e.code=='wrong-password'){
-         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+      } else if (e.code == 'wrong-password') {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
             content: Text(
           "Wrong Password Provided by User",
           style: TextStyle(fontSize: 18.0, color: Colors.black),
@@ -112,8 +116,8 @@ class _LogInState extends State<LogIn> {
                             ),
                             TextFormField(
                               controller: useremailcontroller,
-                              validator: (value){
-                                if(value==null|| value.isEmpty){
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
                                   return 'Please Enter Email';
                                 }
                                 return null;
@@ -127,9 +131,9 @@ class _LogInState extends State<LogIn> {
                               height: 30.0,
                             ),
                             TextFormField(
-                               controller:userpasswordcontroller,
-                              validator: (value){
-                                if(value==null|| value.isEmpty){
+                              controller: userpasswordcontroller,
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
                                   return 'Please Enter Password';
                                 }
                                 return null;
@@ -138,14 +142,19 @@ class _LogInState extends State<LogIn> {
                               decoration: InputDecoration(
                                   hintText: 'Password',
                                   hintStyle: AppWidget.semiBoldTextFieldStyle(),
-                                  prefixIcon: const Icon(Icons.password_outlined)),
+                                  prefixIcon:
+                                      const Icon(Icons.password_outlined)),
                             ),
                             const SizedBox(
                               height: 20.0,
                             ),
                             GestureDetector(
-                              onTap: (){
-                                Navigator.push(context, MaterialPageRoute(builder: (context)=> const ForgotPassword()));
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const ForgotPassword()));
                               },
                               child: Container(
                                   alignment: Alignment.topRight,
@@ -158,11 +167,11 @@ class _LogInState extends State<LogIn> {
                               height: 80.0,
                             ),
                             GestureDetector(
-                              onTap: (){
-                                if(_formkey.currentState!.validate()){
+                              onTap: () {
+                                if (_formkey.currentState!.validate()) {
                                   setState(() {
-                                    email= useremailcontroller.text;
-                                    password= userpasswordcontroller.text;
+                                    email = useremailcontroller.text;
+                                    password = userpasswordcontroller.text;
                                   });
                                 }
                                 userLogin();
@@ -171,7 +180,8 @@ class _LogInState extends State<LogIn> {
                                 elevation: 5.0,
                                 borderRadius: BorderRadius.circular(20),
                                 child: Container(
-                                  padding: const EdgeInsets.symmetric(vertical: 8.0),
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 8.0),
                                   width: 200,
                                   decoration: BoxDecoration(
                                       color: const Color(0Xffff5722),
@@ -198,8 +208,10 @@ class _LogInState extends State<LogIn> {
                   ),
                   GestureDetector(
                       onTap: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => const SignUp()));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const SignUp()));
                       },
                       child: Text(
                         "Don't have an account? Sign up",
