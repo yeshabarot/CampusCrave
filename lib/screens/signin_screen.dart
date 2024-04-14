@@ -108,8 +108,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 const SizedBox(
                   height: 0,
                 ),
+                const SizedBox(height: 10),
                 SizedBox(
-                  height: 50,
+                  height: 40,
                   width: double.infinity,
                   child: OutlinedButton.icon(
                     icon: const Image(
@@ -124,6 +125,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                   ),
                 ),
+                const SizedBox(height: 15),
                 GestureDetector(
                     onTap: () {
                       Navigator.push(
