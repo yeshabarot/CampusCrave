@@ -23,6 +23,7 @@ class NewOnboard extends StatelessWidget {
             onPageChanged: controller.updatePageIndicator,
 
             children: const [
+              
               new_onboardingPage(
                 image: CCimage.onBoardingimage1,
                 title: CCtext.onBoardingtext1,

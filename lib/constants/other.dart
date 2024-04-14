@@ -3,17 +3,17 @@ import 'package:flutter/material.dart';
 class CCtext {
   CCtext._();
 
-  static const onBoardingtext1  = "welocme 1";
-  static const onBoardingtext2 = "welocme 2";
-  static const onBoardingtext3 = "welocme 3";
+  static const onBoardingtext1  = "Welcome to CampusCrave";
+  static const onBoardingtext2 = "";
+  static const onBoardingtext3 = "";
 
 }
 class CCsubtext {
   CCsubtext._();
 
-  static const onBoardingsubtext1 = "welocme sub 1";
-  static const onBoardingsubtext2 = "welocme sub  2";
-  static const onBoardingsubtext3 = "welocme sub 3";
+  static const onBoardingsubtext1 = "Simply Order";
+  static const onBoardingsubtext2 = "Make Payment";
+  static const onBoardingsubtext3 = "& Enjoy your Meal!";
 }
 
 class CCimage {
