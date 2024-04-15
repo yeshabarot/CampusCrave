@@ -1,8 +1,10 @@
 import 'dart:io';
+import 'package:campuscrave/screens/login_screen.dart';
 import 'package:campuscrave/services/auth.dart';
 import 'package:campuscrave/services/shared_pref.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:random_string/random_string.dart';
 
@@ -284,6 +286,7 @@ class _ProfileState extends State<Profile> {
                     GestureDetector(
                       onTap: () {
                         AuthMethods().deleteuser();
+                        Get.to(LoginScreen());
                       },
                       child: Container(
                         margin: const EdgeInsets.symmetric(horizontal: 20.0),

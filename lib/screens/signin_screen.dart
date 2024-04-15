@@ -31,10 +31,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
             .createUserWithEmailAndPassword(email: email, password: password);
 
         ScaffoldMessenger.of(context).showSnackBar((const SnackBar(
-            backgroundColor: Colors.redAccent,
+            backgroundColor: Color.fromARGB(255, 22, 210, 50),
             content: Text(
               "Registered Successfully",
-              style: TextStyle(fontSize: 20.0),
+              style: TextStyle(fontSize: 20.0,color: Colors.black)
+            ,
             ))));
             
         String Id = randomAlphaNumeric(10);
