@@ -1,6 +1,7 @@
 import 'package:campuscrave/constants/colors.dart';
 import 'package:campuscrave/firebase_options.dart';
 import 'package:campuscrave/pages/bottomnav.dart';
+import 'package:campuscrave/pages/order.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

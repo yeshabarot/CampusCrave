@@ -1,10 +1,12 @@
 import 'dart:async';
+import 'dart:math';
 import 'package:campuscrave/pages/bottomnav.dart';
 import 'package:campuscrave/services/database.dart';
 import 'package:campuscrave/services/shared_pref.dart';
 import 'package:campuscrave/widgets/widget_support.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:razorpay_flutter/razorpay_flutter.dart';
 
 class Order extends StatefulWidget {
   const Order({super.key});
@@ -16,9 +18,11 @@ class Order extends StatefulWidget {
 class _OrderState extends State<Order> {
   String? id;
   int total = 0;
+  int payment =0;
+  var _razorpay = Razorpay();
 
   void startTimer() {
-    Timer(const Duration(seconds: 3), () {
+    Timer(const Duration(seconds: 1), () {
       setState(() {});
     });
   }
@@ -39,7 +43,29 @@ class _OrderState extends State<Order> {
     ontheload();
     startTimer();
     super.initState();
+    _razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS, _handlePaymentSuccess);
+    _razorpay.on(Razorpay.EVENT_PAYMENT_ERROR, _handlePaymentError);
+    _razorpay.on(Razorpay.EVENT_EXTERNAL_WALLET, _handleExternalWallet);
   }
+
+  void _handlePaymentSuccess(PaymentSuccessResponse response) {
+    // Do something when payment succeeds
+  }
+
+  void _handlePaymentError(PaymentFailureResponse response) {
+    // Do something when payment fails
+  }
+
+  void _handleExternalWallet(ExternalWalletResponse response) {
+    // Do something when an external wallet is selected
+  }
+
+  //really needed ??
+void dispose(){
+  super.dispose();
+  _razorpay.clear(); // Removes all listeners
+}
+
 
   Stream? foodStream;
 
@@ -114,6 +140,7 @@ class _OrderState extends State<Order> {
 
   @override
   Widget build(BuildContext context) {
+  
     return Scaffold(
       body: Container(
         padding: const EdgeInsets.only(top: 60.0),
@@ -148,19 +175,56 @@ class _OrderState extends State<Order> {
                   ),
                   Text(
                     "\₹" + total.toString(),
-                    style: AppWidget.semiBoldTextFieldStyle(),
-                  )
+                                        style: AppWidget.semiBoldTextFieldStyle(),
+                  ),
+                  //payment = total.toString(),
                 ],
               ),
             ),
             const SizedBox(
               height: 20.0,
             ),
+            
             GestureDetector(
               onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const BottomNav()));
+
+                //razorpay
+              var options = {
+                  'key': 'rzp_test_YX11pZyfLyoM43',
+                  'amount': 30000, //in the smallest currency sub-unit.
+                  'name': 'Canteen',
+                  'order':{ 
+                      "id": "order_${Random().nextInt(100)}",
+                      "entity": "order",
+                      //"amount": 300,
+                      "amount_paid": 0,
+                      "amount_due": 0,
+                      "currency": "INR",
+                      "receipt": "Receipt ${Random().nextInt(10)} ",
+                      "status": "created",
+                      "attempts": 0,
+                      "notes": [],
+                      "created_at": 1566986570
+                    
+                  }, // Generate order_id using Orders API
+                  'description': 'Quick Food',
+                  //'timeout': 60, // in seconds
+                  // 'prefill': {
+                  //   'contact': '9000090000',
+                  //   'email': 'gaurav.kumar@example.com'
+                  // }
+                };
+                 _razorpay.open(options);
+                 
+                 
+                 
+             
+
+                 Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const Order()));
+              // 
               },
+              
               child: Container(
                 padding: const EdgeInsets.symmetric(vertical: 10.0),
                 width: MediaQuery.of(context).size.width,
@@ -185,3 +249,12 @@ class _OrderState extends State<Order> {
     );
   }
 }
+
+//rzp_test_aImtYs22ddJrld - test id 
+
+//KXpfHLZFjZPeb4dLgiiO5Qv8 - test secret
+
+
+//deep razor 
+// rzp_test_YX11pZyfLyoM43
+//ctnB3I8EXIgztmoQjeoru8K0
