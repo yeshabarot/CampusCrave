@@ -23,15 +23,15 @@ class _BottomNavState extends State<BottomNav> {
   late Home homepage;
   late Profile profile;
   late Order order;
-  late Wallet wallet;
+  //late Wallet wallet;
 
   @override
   void initState() {
     homepage = Home();
     order = Order();
     profile = Profile();
-    wallet = Wallet();
-    pages = [homepage, order, wallet, profile];
+    //wallet = Wallet();
+    pages = [homepage, order, profile];
     super.initState();
   }
 
@@ -53,10 +53,10 @@ class _BottomNavState extends State<BottomNav> {
               Icons.home_outlined,
               color: Colors.white,
             ),
-            Icon(
-              Icons.shopping_bag_outlined,
-              color: Colors.white,
-            ),
+            // Icon(
+            //   Icons.shopping_bag_outlined,
+            //   color: Colors.white,
+            // ),
             Icon(
               Icons.wallet_outlined,
               color: Colors.white,

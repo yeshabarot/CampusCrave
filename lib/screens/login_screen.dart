@@ -5,7 +5,6 @@ import 'package:campuscrave/screens/signin_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
@@ -57,8 +56,8 @@ class _LoginScreenState extends State<LoginScreen> {
             //Section 1
             const Image(
                 image: AssetImage("images/LoginIMG.png"),
-                width: 300,
-                height: 270),
+                width: 270,
+                height: 240),
             const Align(
               alignment: Alignment.centerLeft,
               child: Text(
@@ -71,7 +70,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: Text("Login to your Account!",
                     style: TextStyle(fontSize: 20))),
             const SizedBox(
-              height: 30,
+              height: 15,
             ),
             //section 2
             loginform(),
@@ -85,7 +84,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   height: 10,
                 ),
                 SizedBox(
-                  height: 50,
+                  height: 40,
                   width: double.infinity,
                   child: OutlinedButton.icon(
                     icon: const Image(
@@ -93,13 +92,14 @@ class _LoginScreenState extends State<LoginScreen> {
                       width: 30.0,
                       height: 30,
                     ),
-                    onPressed: null,
+                    onPressed: () {},
                     label: const Text(
                       "Sign-in With Google",
                       style: TextStyle(fontSize: 15),
                     ),
                   ),
                 ),
+                const SizedBox(height: 15),
                 GestureDetector(
                     onTap: () {
                       Navigator.push(
@@ -212,4 +212,3 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 }
-

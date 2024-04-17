@@ -1,5 +1,6 @@
 import "package:campuscrave/admin/admin_login.dart";
 import "package:campuscrave/pages/onboard.dart";
+import "package:campuscrave/screens/login_screen.dart";
 import "package:flutter/material.dart";
 
 class WelcomeScreen extends StatefulWidget {
@@ -26,8 +27,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               //Section 1
               const Image(
                   image: AssetImage("images/welcome.png"),
-                  width: 400,
-                  height: 500),
+                  width: 300,
+                  height: 400),
               //sectin 2
 
               const Align(
@@ -43,7 +44,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       "Skip the wait, Savor the taste, \nOrder with Ease, Dine with Peace!",
                       style: TextStyle(fontSize: 20))),
               const SizedBox(
-                height: 40,
+                height: 70,
               ),
               //section 3
               Column(children: [
@@ -84,7 +85,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const Onboard()));
+                              builder: (context) => const LoginScreen()));
                     },
                     child: const Text(
                       "USER",
