@@ -1,11 +1,13 @@
 import 'dart:async';
 import 'dart:math';
 import 'package:campuscrave/pages/bottomnav.dart';
+import 'package:campuscrave/pages/success.dart';
 import 'package:campuscrave/services/database.dart';
 import 'package:campuscrave/services/shared_pref.dart';
 import 'package:campuscrave/widgets/widget_support.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 
 
@@ -15,10 +17,19 @@ class Order extends StatefulWidget {
   @override
   State<Order> createState() => _OrderState();
 }
+class Order1 {
+  late String order_no;
 
+  Order1() {
+    var random = Random();
+    order_no = 'order_${random.nextInt(100)}';
+  }
+}
 class _OrderState extends State<Order> {
   String? id;
   int total = 0;
+  var random = Random();
+    //var order_no = 0;
    var _razorpay = Razorpay();
 
 
@@ -50,6 +61,7 @@ class _OrderState extends State<Order> {
 
   }
    void _handlePaymentSuccess(PaymentSuccessResponse response) {
+    Get.to(Success());
     // Do something when payment succeeds
   }
 
@@ -69,6 +81,7 @@ class _OrderState extends State<Order> {
   Stream? foodStream;
 
   Widget foodCart() {
+    
     return StreamBuilder(
       stream: foodStream,
       builder: (context, AsyncSnapshot snapshot) {
@@ -212,16 +225,19 @@ class _OrderState extends State<Order> {
             const SizedBox(
               height: 20.0,
             ),
+             
             GestureDetector(
               onTap: () {
                    //razorpay
+                   var order = Order1();
                 var options = {
+                
                   'key': 'rzp_test_YX11pZyfLyoM43',
                   'amount':
                       (total / 2) * 100, //in the smallest currency sub-unit.
                   'name': 'Canteen',
                   'order': {
-                    "id": "order_${Random().nextInt(100)}",
+                    "id": order.order_no,
                     "entity": "order",
                     "amount_paid": 0,
                     "amount_due": 0,
@@ -242,8 +258,8 @@ class _OrderState extends State<Order> {
                 _razorpay.open(options);
 
 
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const BottomNav()));
+                // Navigator.push(context,
+                //     MaterialPageRoute(builder: (context) =>  Success()));
               },
               child: Container(
                 padding: const EdgeInsets.symmetric(vertical: 10.0),
