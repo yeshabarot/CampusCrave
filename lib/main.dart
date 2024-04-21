@@ -8,26 +8,6 @@ import 'package:campuscrave/data/repositories/authentication_repository.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 
-// class DatabaseMethods {
-//   // Define other methods in your DatabaseMethods class
-
-//   Future<void> updateFoodCartQuantity(
-//       String userId, String itemId, int quantity) async {
-//     try {
-//       await FirebaseFirestore.instance
-//           .collection('users')
-//           .doc(userId)
-//           .collection('foodCart')
-//           .doc(itemId)
-//           .update({
-//         'Quantity': quantity,
-//       });
-//     } catch (e) {
-//       print('Error updating quantity: $e');
-//     }
-//   }
-// }
-
 Future<void> main() async {
   final WidgetsBinding widgetsBinding =
       WidgetsFlutterBinding.ensureInitialized();
