@@ -1,5 +1,5 @@
 import "package:campuscrave/admin/admin_login.dart";
-import "package:campuscrave/pages/onboard.dart";
+
 import "package:campuscrave/screens/login_screen.dart";
 import "package:flutter/material.dart";
 

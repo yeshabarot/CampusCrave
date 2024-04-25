@@ -6,7 +6,7 @@ import 'package:campuscrave/pages/wallet.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 
-import 'package:campuscrave/admin/admin_orders.dart';
+import 'package:campuscrave/admin/admin_order.dart';
 
 
 
@@ -25,13 +25,13 @@ class _BottomNavState extends State<BottomNav> {
   late Home homepage;
   //late Profile profile;
   late Order order;
-   late AdminOrdersPage order1;
+   late CartDataPage order1;
 
   @override
   void initState() {
     homepage = Home();
     order = Order();
-   order1 = AdminOrdersPage();
+   order1 = CartDataPage();
     //profile = Profile();
    
     pages = [homepage, order, order1];

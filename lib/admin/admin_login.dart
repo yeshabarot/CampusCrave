@@ -1,4 +1,3 @@
-import 'package:campuscrave/admin/admin_bottomnav.dart';
 import 'package:campuscrave/admin/home_admin.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -185,7 +184,7 @@ class _AdminLoginState extends State<AdminLogin> {
               )));
         } else {
           Route route =
-              MaterialPageRoute(builder: (context) => const AdminBottomNav());
+              MaterialPageRoute(builder: (context) => const HomeAdmin());
           Navigator.pushReplacement(context, route);
         }
       });

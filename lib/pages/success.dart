@@ -1,11 +1,7 @@
 import "dart:math";
-
-import "package:campuscrave/admin/admin_login.dart";
 import "package:campuscrave/pages/bottomnav.dart";
-import "package:campuscrave/pages/onboard.dart";
-import "package:campuscrave/screens/login_screen.dart";
 import "package:flutter/material.dart";
-import 'package:campuscrave/pages/order.dart';
+
 
 class Order1 {
   late String order_no;

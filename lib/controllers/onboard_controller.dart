@@ -1,10 +1,8 @@
-import 'package:campuscrave/admin/admin_orders.dart';
-import 'package:campuscrave/pages/success.dart';
+
 import 'package:campuscrave/screens/welcome.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:campuscrave/screens/login_screen.dart';
 import 'package:get_storage/get_storage.dart';
 
 class OnBoardingController extends GetxController {

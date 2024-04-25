@@ -1,5 +1,7 @@
 
-import 'package:campuscrave/admin/admin_orders.dart';
+import 'package:campuscrave/admin/admin_dashboard.dart';
+import 'package:campuscrave/admin/admin_order.dart';
+import 'package:campuscrave/admin/display.dart';
 import 'package:campuscrave/admin/home_admin.dart';
 import 'package:campuscrave/pages/home.dart';
 import 'package:campuscrave/pages/order.dart';
@@ -23,15 +25,15 @@ class _AdminBottomNavState extends State<AdminBottomNav> {
   late List<Widget> pages;
   late Widget currentPage;
   late HomeAdmin adminHome;
-  late Profile profile;
-  late AdminOrdersPage order;
+  late AdminDashboard profile;
+  late CartDataPage order;
 
 
   @override
   void initState() {
     adminHome = HomeAdmin();
-    order = AdminOrdersPage();
-    profile = Profile();
+    order = CartDataPage();
+    profile = AdminDashboard();
    
     pages = [adminHome, order, profile];
     super.initState();
