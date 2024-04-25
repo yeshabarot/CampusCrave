@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'dart:math';
-
+import 'package:campuscrave/pages/bottomnav.dart';
 import 'package:campuscrave/pages/success.dart';
 import 'package:campuscrave/services/database.dart';
 import 'package:campuscrave/services/shared_pref.dart';
@@ -11,7 +11,7 @@ import 'package:get/get.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 
 class Order extends StatefulWidget {
-  const Order({Key? key}) : super(key: key);
+  const Order({super.key});
 
   @override
   State<Order> createState() => _OrderState();
@@ -29,23 +29,9 @@ class Order1 {
 class _OrderState extends State<Order> {
   String? id;
   int total = 0;
+  var random = Random();
+  //var order_no = 0;
   var _razorpay = Razorpay();
-  Stream? foodStream;
-
-  @override
-  void initState() {
-    super.initState();
-    _razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS, _handlePaymentSuccess);
-    _razorpay.on(Razorpay.EVENT_PAYMENT_ERROR, _handlePaymentError);
-    _razorpay.on(Razorpay.EVENT_EXTERNAL_WALLET, _handleExternalWallet);
-    ontheload(); // Call ontheload in initState to load food cart
-  }
-
-  @override
-  void dispose() {
-    _razorpay.clear(); // Clear Razorpay listeners
-    super.dispose();
-  }
 
   void startTimer() {
     Timer(const Duration(seconds: 1), () {
@@ -53,15 +39,47 @@ class _OrderState extends State<Order> {
     });
   }
 
-  Future<void> getthesharedpref() async {
+  getthesharedpref() async {
     id = await SharedPreferenceHelper().getUserId();
+    setState(() {});
   }
 
-  Future<void> ontheload() async {
+  ontheload() async {
     await getthesharedpref();
     foodStream = await DatabaseMethods().getFoodCart(id!);
     setState(() {});
   }
+
+  @override
+  void initState() {
+    ontheload();
+    startTimer();
+    super.initState();
+    _razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS, _handlePaymentSuccess);
+    _razorpay.on(Razorpay.EVENT_PAYMENT_ERROR, _handlePaymentError);
+    _razorpay.on(Razorpay.EVENT_EXTERNAL_WALLET, _handleExternalWallet);
+  }
+
+  void _handlePaymentSuccess(PaymentSuccessResponse response) {
+    Get.to(Success());
+    // Do something when payment succeeds
+  }
+
+  void _handlePaymentError(PaymentFailureResponse response) {
+    // Do something when payment fails
+  }
+
+  void _handleExternalWallet(ExternalWalletResponse response) {
+    // Do something when an external wallet is selected
+  }
+
+  //really needed ??
+  void dispose() {
+    super.dispose();
+    _razorpay.clear(); // Removes all listeners
+  }
+
+  Stream? foodStream;
 
   Widget foodCart() {
     return StreamBuilder(
@@ -172,24 +190,20 @@ class _OrderState extends State<Order> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Material(
-              elevation: 2.0,
-              child: Container(
-                padding: const EdgeInsets.only(bottom: 10.0),
-                child: Center(
-                  child: Text(
-                    "Food Cart",
-                    style: AppWidget.HeadTextFieldStyle(),
-                  ),
-                ),
-              ),
-            ),
+                elevation: 2.0,
+                child: Container(
+                    padding: const EdgeInsets.only(bottom: 10.0),
+                    child: Center(
+                        child: Text(
+                      "Food Cart",
+                      style: AppWidget.HeadTextFieldStyle(),
+                    )))),
             const SizedBox(
               height: 20.0,
             ),
             Container(
-              height: MediaQuery.of(context).size.height / 2,
-              child: foodCart(),
-            ),
+                height: MediaQuery.of(context).size.height / 2,
+                child: foodCart()),
             const Spacer(),
             const Divider(),
             Padding(
@@ -212,12 +226,13 @@ class _OrderState extends State<Order> {
               height: 20.0,
             ),
             GestureDetector(
-              onTap: () async {
+              onTap: () {
                 //razorpay
                 var order = Order1();
                 var options = {
                   'key': 'rzp_test_YX11pZyfLyoM43',
-                  'amount': (total) * 100, //in the smallest currency sub-unit.
+                  'amount':
+                      (total / 2) * 100, //in the smallest currency sub-unit.
                   'name': 'Canteen',
                   'order': {
                     "id": order.order_no,
@@ -230,29 +245,35 @@ class _OrderState extends State<Order> {
                     "attempts": 0,
                     "notes": [],
                     "created_at": 1566986570
-                  }, 
+                  }, // Generate order_id using Orders API
                   'description': 'Quick Food',
+                  //'timeout': 60, // in seconds
+                  // 'prefill': {
+                  //   'contact': '9000090000',
+                  //   'email': 'gaurav.kumar@example.com'
+                  // }
                 };
                 _razorpay.open(options);
+
+                // Navigator.push(context,
+                //     MaterialPageRoute(builder: (context) =>  Success()));
               },
               child: Container(
                 padding: const EdgeInsets.symmetric(vertical: 10.0),
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
-                  color: Colors.black,
-                  borderRadius: BorderRadius.circular(10),
-                ),
+                    color: Colors.black,
+                    borderRadius: BorderRadius.circular(10)),
                 margin: const EdgeInsets.only(
                     left: 20.0, right: 20.0, bottom: 20.0),
                 child: const Center(
-                  child: Text(
-                    "CheckOut",
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20.0,
-                        fontWeight: FontWeight.bold),
-                  ),
-                ),
+                    child: Text(
+                  "CheckOut",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.bold),
+                )),
               ),
             )
           ],
@@ -260,32 +281,13 @@ class _OrderState extends State<Order> {
       ),
     );
   }
-
-  void _handlePaymentSuccess(PaymentSuccessResponse response) async {
-    // After payment success, place the order
-    List<Map<String, dynamic>> items = [];
-    await Future.forEach((foodStream as QuerySnapshot).docs,
-        (DocumentSnapshot doc) {
-      items.add({
-        'name': doc['Name'],
-        'quantity': doc['Quantity'],
-        'total': doc['Total'],
-        // Add more item details as needed
-      });
-    });
-
-    // Place the order in the database
-    await DatabaseMethods().placeOrder(id!, Order1().order_no, total, items);
-
-    // Navigate to success page
-    Get.to(Success());
-  }
-
-  void _handlePaymentError(PaymentFailureResponse response) {
-    // Do something when payment fails
-  }
-
-  void _handleExternalWallet(ExternalWalletResponse response) {
-    // Do something when an external wallet is selected
-  }
 }
+
+
+//rzp_test_aImtYs22ddJrld - test id
+
+//KXpfHLZFjZPeb4dLgiiO5Qv8 - test secret
+
+//deep razor
+// rzp_test_YX11pZyfLyoM43
+//ctnB3I8EXIgztmoQjeoru8K0

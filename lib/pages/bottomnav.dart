@@ -23,18 +23,18 @@ class _BottomNavState extends State<BottomNav> {
   late List<Widget> pages;
   late Widget currentPage;
   late Home homepage;
-  //late Profile profile;
+  late Profile profile;
   late Order order;
-   late AdminOrderPage order1;
+  //late AdminOrderPage order1;
 
   @override
   void initState() {
     homepage = Home();
     order = Order();
-   order1 = AdminOrderPage();
-    //profile = Profile();
+   //order1 = AdminOrderPage();
+    profile = Profile();
    
-    pages = [homepage, order, order1];
+    pages = [homepage, order, profile];
     super.initState();
   }
 
