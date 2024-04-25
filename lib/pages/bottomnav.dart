@@ -6,6 +6,8 @@ import 'package:campuscrave/pages/wallet.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 
+import 'package:campuscrave/admin/admin_orders.dart';
+
 
 
 class BottomNav extends StatefulWidget {
@@ -21,17 +23,18 @@ class _BottomNavState extends State<BottomNav> {
   late List<Widget> pages;
   late Widget currentPage;
   late Home homepage;
-  late Profile profile;
+  //late Profile profile;
   late Order order;
-  //late Wallet wallet;
+   late AdminOrdersPage order1;
 
   @override
   void initState() {
     homepage = Home();
     order = Order();
-    profile = Profile();
-    //wallet = Wallet();
-    pages = [homepage, order, profile];
+   order1 = AdminOrdersPage();
+    //profile = Profile();
+   
+    pages = [homepage, order, order1];
     super.initState();
   }
 
@@ -48,7 +51,7 @@ class _BottomNavState extends State<BottomNav> {
               currentTabIndex = index;
             });
           },
-          items: [
+          items: const [
             Icon(
               Icons.home_outlined,
               color: Colors.white,
@@ -58,7 +61,7 @@ class _BottomNavState extends State<BottomNav> {
             //   color: Colors.white,
             // ),
             Icon(
-              Icons.wallet_outlined,
+              Icons.shopping_cart,
               color: Colors.white,
             ),
             Icon(
