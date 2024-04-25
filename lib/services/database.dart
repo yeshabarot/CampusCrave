@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class DatabaseMethods {
-  get http => null;
+  get http => null; //can be used for user(not sure)
 
 
   // Future<int> getPaymentVolume() async {
@@ -21,7 +21,18 @@ class DatabaseMethods {
   //   }
   // }
 
-    
+  Future<List<DocumentSnapshot>> getAllUsers() async {
+    QuerySnapshot querySnapshot =
+        await FirebaseFirestore.instance.collection('Users').get();
+    return querySnapshot.docs;
+  }
+
+  Future<List<DocumentSnapshot>> getFoodOrders() async {
+    QuerySnapshot querySnapshot =
+        await FirebaseFirestore.instance.collection('foodOrders').get();
+    return querySnapshot.docs;
+  }
+
 
 
   Future<void> addUserDetail(

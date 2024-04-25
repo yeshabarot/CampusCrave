@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class CartDataPage extends StatefulWidget {
+class AdminOrderPage extends StatefulWidget {
   @override
-  _CartDataPageState createState() => _CartDataPageState();
+  _AdminOrderPageState createState() => _AdminOrderPageState();
 }
 
-class _CartDataPageState extends State<CartDataPage> {
+class _AdminOrderPageState extends State<AdminOrderPage> {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   Future<List<Map<String, dynamic>>> getCartData() async {
@@ -108,6 +108,6 @@ class _CartDataPageState extends State<CartDataPage> {
 
 void main() {
   runApp(MaterialApp(
-    home: CartDataPage(),
+    home: AdminOrderPage(),
   ));
 }

@@ -25,7 +25,7 @@ class HomeAdmin extends StatelessWidget {
                   ),
                 ),
                 Image.asset(
-                  "images/nuv.png",
+                  "images/nuvLogo.png",
                   height: 60,
                   width: 40,
                   fit: BoxFit.cover,

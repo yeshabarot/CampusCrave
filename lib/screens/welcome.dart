@@ -1,3 +1,4 @@
+import "package:campuscrave/admin/admin_bottomnav.dart";
 import "package:campuscrave/admin/admin_login.dart";
 
 import "package:campuscrave/screens/login_screen.dart";
@@ -54,7 +55,7 @@ class WelcomeScreen extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const AdminLogin()));
+                              builder: (context) => const AdminBottomNav()));
                     },
                     child: const Text(
                       "ADMIN",
