@@ -1,5 +1,5 @@
-import 'package:campuscrave/pages/profile.dart';
-import 'package:campuscrave/screens/signin_screen.dart';
+
+import 'package:campuscrave/admin/admin_bottomnav.dart';
 import 'package:campuscrave/screens/welcome.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -44,7 +44,7 @@ class OnBoardingController extends GetxController {
   void skipPage(){
     //currentPageIndex.value=2;
     //pageController.jumpToPage(2);
-    Get.to(Profile());
+    Get.to(WelcomeScreen());
 
   }
 }

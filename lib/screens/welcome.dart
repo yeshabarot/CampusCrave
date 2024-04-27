@@ -1,5 +1,6 @@
+import "package:campuscrave/admin/admin_bottomnav.dart";
 import "package:campuscrave/admin/admin_login.dart";
-import "package:campuscrave/pages/onboard.dart";
+
 import "package:campuscrave/screens/login_screen.dart";
 import "package:flutter/material.dart";
 
@@ -60,7 +61,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const AdminLogin()));
+                              builder: (context) => const AdminBottomNav()));
                     },
                     child: const Text(
                       "ADMIN",

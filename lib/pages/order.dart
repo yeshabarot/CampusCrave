@@ -10,13 +10,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 
-
 class Order extends StatefulWidget {
   const Order({super.key});
 
   @override
   State<Order> createState() => _OrderState();
 }
+
 class Order1 {
   late String order_no;
 
@@ -25,16 +25,16 @@ class Order1 {
     order_no = 'order_${random.nextInt(100)}';
   }
 }
+
 class _OrderState extends State<Order> {
   String? id;
   int total = 0;
   var random = Random();
-    //var order_no = 0;
-   var _razorpay = Razorpay();
-
+  //var order_no = 0;
+  var _razorpay = Razorpay();
 
   void startTimer() {
-    Timer(const Duration(seconds: 3), () {
+    Timer(const Duration(seconds: 1), () {
       setState(() {});
     });
   }
@@ -58,9 +58,9 @@ class _OrderState extends State<Order> {
     _razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS, _handlePaymentSuccess);
     _razorpay.on(Razorpay.EVENT_PAYMENT_ERROR, _handlePaymentError);
     _razorpay.on(Razorpay.EVENT_EXTERNAL_WALLET, _handleExternalWallet);
-
   }
-   void _handlePaymentSuccess(PaymentSuccessResponse response) {
+
+  void _handlePaymentSuccess(PaymentSuccessResponse response) {
     Get.to(Success());
     // Do something when payment succeeds
   }
@@ -78,10 +78,10 @@ class _OrderState extends State<Order> {
     super.dispose();
     _razorpay.clear(); // Removes all listeners
   }
+
   Stream? foodStream;
 
   Widget foodCart() {
-    
     return StreamBuilder(
       stream: foodStream,
       builder: (context, AsyncSnapshot snapshot) {
@@ -225,13 +225,11 @@ class _OrderState extends State<Order> {
             const SizedBox(
               height: 20.0,
             ),
-             
             GestureDetector(
               onTap: () {
-                   //razorpay
-                   var order = Order1();
+                //razorpay
+                var order = Order1();
                 var options = {
-                
                   'key': 'rzp_test_YX11pZyfLyoM43',
                   'amount':
                       (total / 2) * 100, //in the smallest currency sub-unit.
@@ -256,7 +254,6 @@ class _OrderState extends State<Order> {
                   // }
                 };
                 _razorpay.open(options);
-
 
                 // Navigator.push(context,
                 //     MaterialPageRoute(builder: (context) =>  Success()));

@@ -8,6 +8,7 @@ import 'package:campuscrave/data/repositories/authentication_repository.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 
+
 Future<void> main() async {
   final WidgetsBinding widgetsBinding =
       WidgetsFlutterBinding.ensureInitialized();
