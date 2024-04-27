@@ -26,13 +26,13 @@ class _AdminBottomNavState extends State<AdminBottomNav> {
   late Widget currentPage;
   late HomeAdmin adminHome;
   late AdminDashboard profile;
-  late CartDataPage order;
+  late AdminOrderPage order;
 
 
   @override
   void initState() {
     adminHome = HomeAdmin();
-    order = CartDataPage();
+    order = AdminOrderPage();
     profile = AdminDashboard();
    
     pages = [adminHome, order, profile];

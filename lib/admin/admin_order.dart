@@ -46,7 +46,7 @@ class _AdminOrderPageState extends State<AdminOrderPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Cart Data'),
+        title: Text('Admin Order'),
       ),
       body: FutureBuilder<List<Map<String, dynamic>>>(
         future: getCartData(),
