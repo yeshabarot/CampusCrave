@@ -3,7 +3,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class DatabaseMethods {
   get http => null; //can be used for user(not sure)
 
-
   // Future<int> getPaymentVolume() async {
   //   try {
   //     final response = await http.get(
@@ -32,8 +31,6 @@ class DatabaseMethods {
         await FirebaseFirestore.instance.collection('foodOrders').get();
     return querySnapshot.docs;
   }
-
-
 
   Future<void> addUserDetail(
       Map<String, dynamic> userInfoMap, String id) async {
@@ -119,4 +116,5 @@ class DatabaseMethods {
       // Handle error accordingly
     }
   }
+
 }

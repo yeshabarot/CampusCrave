@@ -2,11 +2,9 @@
 import 'package:campuscrave/pages/home.dart';
 import 'package:campuscrave/pages/order.dart';
 import 'package:campuscrave/pages/profile.dart';
-import 'package:campuscrave/pages/wallet.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 
-import 'package:campuscrave/admin/admin_order.dart';
 
 
 

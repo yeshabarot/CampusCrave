@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:math';
-import 'package:campuscrave/pages/bottomnav.dart';
 import 'package:campuscrave/pages/success.dart';
 import 'package:campuscrave/services/database.dart';
 import 'package:campuscrave/services/shared_pref.dart';

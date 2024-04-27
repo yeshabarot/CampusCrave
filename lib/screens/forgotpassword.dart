@@ -1,4 +1,4 @@
-import 'package:campuscrave/pages/signup.dart';
+import 'package:campuscrave/screens/signin_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -147,7 +147,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => SignUp()));
+                                  builder: (context) => SignUpScreen()));
                         },
                         child: const Text(
                           "Create",
