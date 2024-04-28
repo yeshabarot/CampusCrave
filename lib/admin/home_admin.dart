@@ -17,7 +17,7 @@ class HomeAdmin extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
+                const Text(
                   "Navrachana Canteen",
                   style: TextStyle(
                     fontSize: 24.0,
@@ -108,13 +108,13 @@ class HomeAdmin extends StatelessWidget {
                     children: [
                       Text(
                         title,
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Colors.white,
                           fontSize: 20.0,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      Icon(
+                      const Icon(
                         Icons.arrow_forward,
                         color: Colors.white,
                       ),

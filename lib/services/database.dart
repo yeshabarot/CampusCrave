@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class DatabaseMethods {
   get http => null; //can be used for user(not sure)
 
+
   // Future<int> getPaymentVolume() async {
   //   try {
   //     final response = await http.get(
@@ -32,6 +33,8 @@ class DatabaseMethods {
     return querySnapshot.docs;
   }
 
+
+
   Future<void> addUserDetail(
       Map<String, dynamic> userInfoMap, String id) async {
     try {
@@ -52,6 +55,19 @@ class DatabaseMethods {
       print("Error adding food item: $e");
     }
   }
+
+  Future<Stream<QuerySnapshot>?> getDisplayedFoodItems(String name) async {
+  try {
+      return FirebaseFirestore.instance
+          .collection(name)
+          .where('isDisplayed', isEqualTo: true)
+          .snapshots();
+    } catch (e) {
+      print("Error fetching displayed food items: $e");
+      return null;
+    }
+  }
+
 
   Future<Stream<QuerySnapshot>?> getFoodItem(String name) async {
     try {
@@ -116,5 +132,120 @@ class DatabaseMethods {
       // Handle error accordingly
     }
   }
+
+
+  //  Future<void> addOrder(String userId, String orderNumber, int totalAmount,
+  //     List<Map<String, dynamic>> items, bool isPending) async {
+  //   try {
+  //     await FirebaseFirestore.instance
+  //         .collection('Orders')
+  //         .doc(orderNumber)
+  //         .set({
+  //       'userId': userId,
+  //       'totalAmount': totalAmount,
+  //       'items': items,
+  //       'isPending': isPending, // Add the boolean field
+  //       'timestamp': DateTime.now(),
+  //     });
+  //   } catch (e) {
+  //     print('Error adding order: $e');
+  //     // Handle error accordingly
+  //   }
+  // }
+
+  Future<int> getOrderCounter() async {
+    try {
+      DocumentSnapshot counterDoc =
+          await FirebaseFirestore.instance.collection('OrderCounter').doc('counter').get();
+      int currentCounter = counterDoc.exists ? counterDoc['counter'] : 0;
+      return currentCounter;
+    } catch (e) {
+      print('Error retrieving order counter: $e');
+      return 0;
+    }
+  }
+
+  // Future<void> incrementOrderCounter() async {
+  //   try {
+  //     await FirebaseFirestore.instance.collection('OrderCounter').doc('counter').update(
+  //       {'counter': FieldValue.increment(1)},
+  //     );
+  //   } catch (e) {
+  //     print('Error incrementing order counter: $e');
+  //   }
+  // }
+
+
+// Method to get the last order number for a user
+    Future<int> getLastOrderNumber(String userId) async {
+    try {
+      DocumentSnapshot orderCounterDoc = await FirebaseFirestore.instance
+          .collection('OrderCounter')
+          .doc('counter')
+          .get();
+      int currentCounter = orderCounterDoc.exists ? orderCounterDoc['counter'] : 0;
+      return currentCounter;
+    } catch (e) {
+      print('Error retrieving last order number: $e');
+      throw Exception('Failed to get last order number');
+    }
+  }
+  
+  // Method to get the last order number
+  // Future<int> getLastOrderNumber() async {
+  //   try {
+  //     DocumentSnapshot orderCounterDoc = await FirebaseFirestore.instance
+  //         .collection('OrderCounter')
+  //         .doc('counter')
+  //         .get();
+  //     int currentCounter = orderCounterDoc.exists ? orderCounterDoc['counter'] : 0;
+  //     return currentCounter;
+  //   } catch (e) {
+  //     print('Error retrieving last order number: $e');
+  //     throw Exception('Failed to get last order number');
+  //   }
+  // }
+
+  // Method to add an order
+  Future<void> addOrder(String userId, String orderNumber, int totalAmount,
+      List<Map<String, dynamic>> items, bool isPending) async {
+    try {
+      await FirebaseFirestore.instance
+          .collection('Orders')
+          .doc(orderNumber)
+          .set({
+        'userId': userId,
+        'totalAmount': totalAmount,
+        'items': items,
+        'isPending': isPending,
+        'timestamp': DateTime.now(),
+      });
+    } catch (e) {
+      print('Error adding order: $e');
+      // Handle error accordingly
+    }
+  }
+
+  // Method to increment the order counter
+  Future<void> incrementOrderCounter() async {
+    try {
+      await FirebaseFirestore.instance.collection('OrderCounter').doc('counter').update(
+        {'counter': FieldValue.increment(1)},
+      );
+    } catch (e) {
+      print('Error incrementing order counter: $e');
+    }
+  }
+
+
+  //  Future<Stream<QuerySnapshot>?> getOrders(String name) async {
+  //   try {
+  //     return FirebaseFirestore.instance.collection(name).snapshots();
+  //   } catch (e) {
+  //     print("Error fetching food items: $e");
+  //     return null;
+  //   }
+  // }
+
 
 }

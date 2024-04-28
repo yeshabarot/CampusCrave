@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:math';
+
 import 'package:campuscrave/pages/success.dart';
 import 'package:campuscrave/services/database.dart';
 import 'package:campuscrave/services/shared_pref.dart';
@@ -10,27 +11,17 @@ import 'package:get/get.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 
 class Order extends StatefulWidget {
-  const Order({super.key});
+  const Order({Key? key});
 
   @override
   State<Order> createState() => _OrderState();
 }
 
-class Order1 {
-  late String order_no;
-
-  Order1() {
-    var random = Random();
-    order_no = 'order_${random.nextInt(100)}';
-  }
-}
-
 class _OrderState extends State<Order> {
   String? id;
   int total = 0;
-  var random = Random();
-  //var order_no = 0;
   var _razorpay = Razorpay();
+  int orderNumber = 0; // Initialize order number
 
   void startTimer() {
     Timer(const Duration(seconds: 1), () {
@@ -43,10 +34,12 @@ class _OrderState extends State<Order> {
     setState(() {});
   }
 
-  ontheload() async {
+  Future<void> ontheload() async {
     await getthesharedpref();
     foodStream = await DatabaseMethods().getFoodCart(id!);
     setState(() {});
+    // Get the latest order number from the database
+    orderNumber = await DatabaseMethods().getLastOrderNumber(id!);
   }
 
   @override
@@ -59,10 +52,36 @@ class _OrderState extends State<Order> {
     _razorpay.on(Razorpay.EVENT_EXTERNAL_WALLET, _handleExternalWallet);
   }
 
-  void _handlePaymentSuccess(PaymentSuccessResponse response) {
-    Get.to(Success());
-    // Do something when payment succeeds
+  void _handlePaymentSuccess(PaymentSuccessResponse response) async {
+    try {
+      // Get the current user's ID
+      String? userId = await SharedPreferenceHelper().getUserId();
+
+      // Get the cart items
+      List<Map<String, dynamic>> cartItems = [];
+      await FirebaseFirestore.instance.collection('Users').doc(userId!).collection('Cart').get().then((querySnapshot) {
+        querySnapshot.docs.forEach((doc) {
+          cartItems.add(doc.data() as Map<String, dynamic>);
+        });
+      });
+
+      // Get the last order number based on timestamp and increment it by 1
+      int lastOrderNumber = await DatabaseMethods().getLastOrderNumber(userId);
+      int orderNumber = lastOrderNumber + 1;
+
+      // Store the order details in Firestore
+      await DatabaseMethods().addOrder(userId, orderNumber.toString(), total, cartItems, true); // Assuming the initial status is 'pending'
+
+      // Navigate to success page and pass the order number
+      Get.to(Success(orderId: orderNumber.toString()));
+
+    } catch (e) {
+      // Handle any errors
+      print("Error handling payment success: $e");
+    }
   }
+
+
 
   void _handlePaymentError(PaymentFailureResponse response) {
     // Do something when payment fails
@@ -72,7 +91,7 @@ class _OrderState extends State<Order> {
     // Do something when an external wallet is selected
   }
 
-  //really needed ??
+  @override
   void dispose() {
     super.dispose();
     _razorpay.clear(); // Removes all listeners
@@ -227,14 +246,13 @@ class _OrderState extends State<Order> {
             GestureDetector(
               onTap: () {
                 //razorpay
-                var order = Order1();
                 var options = {
                   'key': 'rzp_test_YX11pZyfLyoM43',
                   'amount':
                       (total / 2) * 100, //in the smallest currency sub-unit.
                   'name': 'Canteen',
                   'order': {
-                    "id": order.order_no,
+                    "id": orderNumber.toString(),
                     "entity": "order",
                     "amount_paid": 0,
                     "amount_due": 0,
@@ -246,16 +264,8 @@ class _OrderState extends State<Order> {
                     "created_at": 1566986570
                   }, // Generate order_id using Orders API
                   'description': 'Quick Food',
-                  //'timeout': 60, // in seconds
-                  // 'prefill': {
-                  //   'contact': '9000090000',
-                  //   'email': 'gaurav.kumar@example.com'
-                  // }
                 };
                 _razorpay.open(options);
-
-                // Navigator.push(context,
-                //     MaterialPageRoute(builder: (context) =>  Success()));
               },
               child: Container(
                 padding: const EdgeInsets.symmetric(vertical: 10.0),
@@ -281,12 +291,3 @@ class _OrderState extends State<Order> {
     );
   }
 }
-
-
-//rzp_test_aImtYs22ddJrld - test id
-
-//KXpfHLZFjZPeb4dLgiiO5Qv8 - test secret
-
-//deep razor
-// rzp_test_YX11pZyfLyoM43
-//ctnB3I8EXIgztmoQjeoru8K0
